@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Feed</title>
+<!-- STYLE -->
+<style>
+    table, td {
+        padding: 10px;
+        border: 1px solid rgb(246, 246, 246);
+        border-collapse: collapse;
+    }
+
+
+    .row {
+        display:block;
+    }
+    
+    .column {
+        flex: auto;
+    }
+
+</style>
+
+</head>
+<body>
+    <h1> Crypto News of the Day</h1>
+    
+    <div>
+        <table style="max-width:100px;">
+            <tr> <div data-th-each="n : ${articlesList}"><td>
+                <p><span data-th-text="${ID}">ID:</span></p>
+                <p>Published On:<span data-tg-src="${n.pub}"></span></p>
+                <p><span data-th-text="${title}"></span></p>
+                <p><a data-th-href="${url}"><span data-th-text="${n.url}"></span></a>link</p>
+                <p><img data-th-src="${imageUrl}" width="100px"></p>
+                <p><span data-th-text="${body}"></span></p>
+                <p><data-th-each="${tags}">Tags:</p>
+                <p><data-th-each="${categories}">
+                    <span data-th-text="${c}">Categories:</span> </p>
+                <p><form:checkbox items="{save}" path="/articles"/>
+                    <button type="checkbox">SAVE</button></p>
+         </td>
+            
+         </tr> </tr>
+        </table>
+    </div>
+	
+    
+</body>
+</html>

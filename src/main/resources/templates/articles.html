@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest News Articles</title>
+<!-- STYLE -->
+   <style>
+        table, td {
+            padding: 10px;
+            border: 1px solid rgb(236, 236, 236);
+            border-collapse: collapse;
+        }
+
+
+        .row {
+            display: flex;
+        }
+        
+        .column {
+            flex: auto;
+        }
+
+    </style>
+
+</head>
+<body>
+    <h1> Crypto News of the Day</h1>
+    <form action="/articles" method="POST">
+        <button type="submit">SAVE</button>
+    </form>
+<br></br>
+    <div>
+        <table style="max-width:200px;">
+            <tr>
+                <td>ID</td>
+                <td>PUBLISHED ON</td>
+                <td>TITLE</td>
+                <td>URL</td>
+                <td>IMAGE URL</td>
+                <td>BODY</td>
+                <td>TAGS</td>
+                <td>CATEGORIES</td>
+                <td>SAVE ARTICLE</td>
+            </tr>
+            
+            <tr data-th-each="n : ${articlesList}">
+                <td>
+                    <span data-th-text="${n.pub}"></span>
+                </td>
+                <td>
+                    <img data-th-src="${n.title}" width="100px">
+                </td>
+                
+                <td>
+                    <span data-th-text="${n.url}"></span> 
+                </td>
+                <td>
+                    <a data-th-href="${n.imageurl}"><span data-th-text="${n.url}"></span></a>
+                    <!-- <span data-th-text="${n.url}"></span>  -->
+                </td>
+                <td>
+                    <span data-th-text="${n.body}"></span> 
+                </td>
+                <td>
+                    <span data-th-text="${n.tags}"></span> 
+                </td>
+                <td>
+                    <!-- <span data-th-text="${n.tags}"></span>  -->
+                    <ul>
+                        <li data-th-each="l : ${n.tags}">
+                            <span data-th-text="${l}"></span> 
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    <!-- <span data-th-text="${n.categories}"></span>  -->
+                    <ul>
+                        <li data-th-each="c : ${n.categories}">
+                            <span data-th-text="${c}"></span> 
+                        </li>
+                    </ul>
+                </td>
+
+                <td>
+                    <!-- <span data-th-text="${n.save}"></span>  -->
+                    <ul>
+                        <form:checkbox items="{cn.save}" path="articles"/>
+                        <button type="submit">SAVE</button>
+                        <!-- <li data-th-each="c : ${n.save}">
+                            <span data-th-text="${c}"></span>  -->
+                        </form:form>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    
+</body>
+</html>
